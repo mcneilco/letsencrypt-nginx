@@ -95,11 +95,11 @@ The service is now running over https.
 
 ## How to run it
 
-You need a docker server running on the public internet, with a DNS entry pointing at it. If you dont have this yet, use the [other repo](https://bitbucket.org/automationlogic/docker-machine-on-aws) in this series .
+You need a docker server running on the public internet, with a DNS entry pointing at it.
 
 ```
-git clone git@bitbucket.org:automationlogic/le-docker-compose.git
-cd le-docker-compose
+git clone https://github.com/mcneilco/letsencrypt-nginx.git
+cd letsencrypt-nginx
 ```
 
 Open up docker-compose.yml, and change the two instances of ```www.yourdomain.co.uk``` with the dns name your docker server is running at. Then,
@@ -154,7 +154,7 @@ docker-compose run letsencrypt
 Then, reload the nginx config
 
 ```
-docker exec ledockercompose_nginx_1 nginx -s reload
+docker exec letsencryptnginx_nginx_1 nginx -s reload
 ```
 
 Done.
