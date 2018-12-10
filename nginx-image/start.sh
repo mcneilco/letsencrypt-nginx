@@ -3,15 +3,16 @@ sleep 3
 
 echo build starting nginx config
 
-
-echo replacing ___my.example.com___/$MY_DOMAIN_NAME
+echo replacing ___my.example.com___/$MY_FQDN_NAME
+echo replacing ___example.com___/$MY_DOMAIN_NAME
 echo replacing ___LETSENCRYPT_IP___/$LETSENCRYPT_HOST
 echo replacing ___LETSENCRYPT_PORT___/$LETSENCRYPT_PORT
 echo replacing ___APPLICATION_IP___/$ACAS_HOST
 echo replacing ___APPLICATION_PORT___/$ACAS_PORT
 
 # Put your domain name into the nginx reverse proxy config.
-sed -i "s/___my.example.com___/$MY_DOMAIN_NAME/g" /etc/nginx/nginx.conf
+sed -i "s/___my.example.com___/$MY_FQDN_NAME/g" /etc/nginx/nginx.conf
+sed -i "s/___example.com___/$MY_DOMAIN_NAME/g" /etc/nginx/nginx.conf
 # Add your app's container IP and port into config
 sed -i "s/___APPLICATION_IP___/$ACAS_HOST/g" /etc/nginx/nginx.conf
 sed -i "s/___APPLICATION_PORT___/$ACAS_PORT/g" /etc/nginx/nginx.conf
@@ -49,7 +50,8 @@ do
     sleep 2
 done
 
-echo replacing ___my.example.com___/$MY_DOMAIN_NAME
+echo replacing ___my.example.com___/$MY_FQDN_NAME
+echo replacing ___example.com___/$MY_DOMAIN_NAME
 echo replacing ___LETSENCRYPT_IP___/$LETSENCRYPT_HOST
 echo replacing ___LETSENCRYPT_PORT___/$LETSENCRYPT_PORT
 echo replacing ___LETSENCRYPT_HTTPS_IP___/$LETSENCRYPT_HOST
@@ -59,7 +61,9 @@ echo replacing ___APPLICATION_PORT___/$ACAS_PORT
 
 
 # Put your domain name into the nginx reverse proxy config.
-sed -i "s/___my.example.com___/$MY_DOMAIN_NAME/g" /etc/nginx/nginx-secure.conf
+sed -i "s/___my.example.com___/$MY_FQDN_NAME/g" /etc/nginx/nginx-secure.conf
+
+sed -i "s/___example.com___/$MY_DOMAIN_NAME/g" /etc/nginx/nginx-secure.conf
 
 # Add LE container IP and port into config
 sed -i "s/___LETSENCRYPT_IP___/$LETSENCRYPT_HOST/g" /etc/nginx/nginx-secure.conf
